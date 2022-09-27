@@ -290,7 +290,7 @@ Fortunately, once a problem is reported, we can paste the output of `FZDEBUG=rep
 
 Any and all feedback is welcome! :grinning:
 
-Please feel free to open a new issue here, or to contact the author on Twitter ([@infosecual1](https://twitter.com/infosecual1)).
+Please feel free to open a new issue here, or to contact the author on Twitter ([@infosecual1](https://twitter.com/infosecual)).
 
 The [Roadmap](https://github.com/infosecual/go-fuzz-fill-utils/wiki/Roadmap) wiki page is a reasonable starting place.
 
