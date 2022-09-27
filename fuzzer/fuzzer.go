@@ -829,10 +829,10 @@ func emitBasicRepro(calls []execCall, sequential bool, startParallelIndex int, s
 }
 
 func init() {
-	go-fuzz-fill-utilsDebugParse()
+	go_fuzz_fill_utilsDebugParse()
 }
 
-func go-fuzz-fill-utilsDebugParse() {
+func go_fuzz_fill_utilsDebugParse() {
 	debug := strings.Split(os.Getenv("FZDEBUG"), ",")
 	for _, f := range debug {
 		if strings.HasPrefix(f, "repro=") {
