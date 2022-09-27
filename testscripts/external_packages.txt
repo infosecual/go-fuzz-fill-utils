@@ -1,0 +1,25 @@
+# Test some external packages to confirm bugs are fixed.
+#
+# To run just this:
+#   go test -run=TestScripts/external_packages -end2end
+
+# Set up a usable module, including the run time dependency for go-fuzz-fill-utils/fuzzer
+# Note: we force use of our local copy of go-fuzz-fill-utils via a 'replace' directive.
+go mod init temp
+go mod edit -replace github.com/infosecual/go-fuzz-fill-utils=$FZLOCALDIR
+go get github.com/infosecual/go-fuzz-fill-utils/fuzzer
+go list -m all
+
+# Add the filch package from tailscale.com
+go get tailscale.com/logtail/filch@v1.18.2
+
+# Create wrappers, though force go-fuzz-fill-utils to treated filtch as a local package in the wrappers.
+env FZDEBUG=forcelocal=1
+go-fuzz-fill-utils tailscale.com/logtail/filch
+exists autofuzz_test.go
+
+# Check that we don't have an unexpectedly package-qualified Options type used.
+grep 'var opts Options' autofuzz_test.go
+! grep 'var opts filch\.Options' autofuzz_test.go
+
+env FZDEBUG=forcelocal=0

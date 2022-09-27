@@ -1,0 +1,8 @@
+# 'go-fuzz-fill-utils -h' shows fuzzing help. If there are multiple testscript failures including
+# this one, this is a good one to investigate first to see if there is a problem
+# with the testscript setup in general.
+
+go-fuzz-fill-utils -h
+stderr 'Usage'
+! stdout .+
+
